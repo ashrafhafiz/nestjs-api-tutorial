@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  postgres_db2:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: nestjs2
+    networks:
+      - dev-network
+  networks:
+    dev-network:
