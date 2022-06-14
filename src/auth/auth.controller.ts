@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Version } from '@nestjs/common';
-import { version } from 'os';
+import { Body, Controller, Get, Post, Version } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { AuthDto } from './dto';
 
 // @Controller({ path: '/auth', version: '1' })
 @Controller({ path: '/auth' })
@@ -8,20 +8,22 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Version('1')
-  @Post('/login')
-  login() {
-    return this.authService.login();
+  @Post('/signin')
+  signin(@Body() body: AuthDto) {
+    console.log(body);
+    return this.authService.signin(body);
   }
 
   @Version('1')
   @Post('/signup')
-  signup() {
-    return this.authService.signup();
+  signup(@Body() body: AuthDto) {
+    console.log(body);
+    return this.authService.signup(body);
   }
 
-  @Version('2')
-  @Post('/signup')
-  signup2() {
-    return this.authService.signup();
-  }
+  // @Version('2')
+  // @Post('/signup')
+  // signup2() {
+  //   return this.authService.signup();
+  // }
 }
